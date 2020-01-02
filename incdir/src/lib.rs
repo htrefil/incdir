@@ -1,3 +1,26 @@
+//! Compile-time including of directories.
+//!
+//! This crate works in a similar fashion as the `include_bytes!` macro in Rust, except it includes
+//! a whole directory and stores them in a perfect hash function map from the phf crate.
+//! # Usage
+//! ```toml
+//! [dependencies]
+//! incdir = "0.1.0"
+//! phf = { version = "*", features = ["macros"] }
+//! ```
+//!
+//! ```
+//! use phf::Map;
+//!
+//! static TEXTURES: Map<&'static str, &'static [u8]> = incdir::include_dir!("textures");
+//!
+//! fn main() {
+//!     // The file is stored in "files/player.png", the directory prefix is stripped in the map.
+//!     let player = TEXTURES.get("player.png").unwrap();
+//!     // Stored in "textures/world/grass.png".
+//!     let grass = TEXTURES.get("world/grass.png").unwrap()
+//! }
+//! ```
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
@@ -7,6 +30,8 @@ use std::io::Error;
 use std::path::{Path, PathBuf};
 use syn::{Expr, Lit};
 
+/// The proc macro that does the hard work.
+/// Returns a `phf::Map<&'static str, &'static [u8]>`.
 #[proc_macro]
 pub fn include_dir(input: TokenStream) -> TokenStream {
     let path = match syn::parse_macro_input!(input as Expr) {
@@ -33,8 +58,14 @@ pub fn include_dir(input: TokenStream) -> TokenStream {
     let paths = files.iter().map(|path| path.to_str().unwrap().to_string());
 
     (quote::quote! {
-        phf::phf_map! {
-            #(#names => include_bytes!(#paths),)*
+        {
+            let map: phf::Map<&'static str, &'static [u8]> = {
+                phf::phf_map! {
+                    #(#names => include_bytes!(#paths),)*
+                }
+            };
+
+            map
         }
     })
     .into()
