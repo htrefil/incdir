@@ -11,7 +11,8 @@
 //! phf = { version = "*", features = ["macros"] }
 //! ```
 //!
-//! ```
+//! ```ignore
+//! #![feature(proc_macro_hygiene)]
 //! use phf::Map;
 //!
 //! static TEXTURES: Map<&'static str, &'static [u8]> = incdir::include_dir!("textures");
