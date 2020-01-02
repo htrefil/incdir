@@ -1,5 +1,5 @@
 # incdir
-[![Documentation](https://docs.rs/incdir/badge.svg)]
+[![Documentation](https://docs.rs/incdir/badge.svg)](https://docs.rs/incdir/)
 
 Compile-time including of directories.
 
