@@ -4,7 +4,7 @@ Compile-time including of directories.
 This crate works in a similar fashion as the `include_bytes!` macro in Rust, except it includes
 a whole directory and stores them in a perfect hash function map from the [phf](https://crates.io/crates/phf) crate.
 
-All pathnames in the directory processed by the `include_dir` macro must be valid UTF-8.
+All pathnames in the directory processed by the `include_dir!` macro must be valid UTF-8.
 
 # Usage
 ```
