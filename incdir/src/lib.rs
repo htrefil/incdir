@@ -56,6 +56,7 @@ pub fn include_dir(input: TokenStream) -> TokenStream {
             .collect::<PathBuf>()
             .to_str()
             .unwrap()
+            .replace('\\', "/")
             .to_string()
     });
     let paths = files.iter().map(|path| path.to_str().unwrap().to_string());
