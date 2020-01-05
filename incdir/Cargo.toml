@@ -6,6 +6,7 @@ edition = "2018"
 description = "Compile-time including of directories."
 license = "MIT"
 repository = "https://github.com/htrefil/incdir"
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
