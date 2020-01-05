@@ -8,7 +8,7 @@
 //! # Usage
 //! ```toml
 //! [dependencies]
-//! incdir = "0.1.0"
+//! incdir = "1.0.0"
 //! phf = { version = "*", features = ["macros"] }
 //! ```
 //!

@@ -12,7 +12,7 @@ All pathnames in the directory processed by the `include_dir!` macro must be val
 ## Usage
 ```
 [dependencies]
-incdir = "0.1.0"
+incdir = "1.0.0"
 phf = { version = "*", features = ["macros"] }
 ```
 
