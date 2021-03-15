@@ -10,13 +10,13 @@ For cross-platform consistency, backslashes in paths stored in the map are repla
 All pathnames in the directory processed by the `include_dir!` macro must be valid UTF-8.
 
 ## Usage
-```
+```toml
 [dependencies]
 incdir = "1.0.0"
 phf = { version = "*", features = ["macros"] }
 ```
 
-```
+```rust
 #![feature(proc_macro_hygiene)]
 use phf::Map;
 
